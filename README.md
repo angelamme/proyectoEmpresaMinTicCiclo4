@@ -1,6 +1,6 @@
 ﻿# proyectoEmpresaMinTicCiclo4
 
-Proyecto del Módulo de Desarrollo de Aplicaciones Web del ciclo 4 del programa de MisionTic 2022 con la Universidad de Caldas.
+Proyecto del Módulo de Desarrollo de Aplicaciones Web del ciclo 4 del programa MisionTic 2022 con la Universidad de Caldas.
 
 # Team D Desarrolladores
 
