@@ -3,3 +3,4 @@ export * from './empleado.model';
 export * from './cliente.model';
 
 export * from './mensaje-empleado.model';
+export * from './mensaje-cliente.model';

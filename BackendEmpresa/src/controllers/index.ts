@@ -9,3 +9,6 @@ export * from './empleado.controller';
 export * from './mensaje-empleado.controller';
 export * from './mensaje-empleado-empleado.controller';
 export * from './empleado-mensaje-empleado.controller';
+export * from './mensaje-cliente.controller';
+export * from './mensaje-cliente-cliente.controller';
+export * from './cliente-mensaje-cliente.controller';

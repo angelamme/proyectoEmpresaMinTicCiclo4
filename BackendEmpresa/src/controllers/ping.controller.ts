@@ -1,4 +1,5 @@
-import {inject} from '@loopback/core';
+import {inject, service} from '@loopback/core';
+import {NotificacionesService} from '../services';
 import {
   Request,
   RestBindings,
@@ -38,13 +39,18 @@ const PING_RESPONSE: ResponseObject = {
  * A simple controller to bounce back http requests
  */
 export class PingController {
-  constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
+  constructor(
+    @inject(RestBindings.Http.REQUEST) private req: Request,
+    @service(NotificacionesService)
+    public notificaciones: NotificacionesService
+  ) {}
 
   // Map to `GET /ping`
   @get('/ping')
   @response(200, PING_RESPONSE)
   ping(): object {
     // Reply with a greeting, the current time, the url, and request headers
+    this.notificaciones.EnviarNotifiacionesPorSMS("Mensaje de prueba","+573108370327");
     return {
       greeting: 'Hello from LoopBack',
       date: new Date(),
