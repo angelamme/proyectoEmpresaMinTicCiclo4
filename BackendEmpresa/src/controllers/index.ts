@@ -6,3 +6,6 @@ export * from './empresa-empleado.controller';
 export * from './empresa.controller';
 export * from './cliente.controller';
 export * from './empleado.controller';
+export * from './mensaje-empleado.controller';
+export * from './mensaje-empleado-empleado.controller';
+export * from './empleado-mensaje-empleado.controller';
