@@ -8,11 +8,19 @@ export class NotificacionesService {
    * Add service methods here
    */
 
+  // POR FAVOR QUITAR EL TOKEN CUANDO SE VAYA A SUBIR EL CÓDIGO A GITHUB
+  // POR FAVOR QUITAR EL TOKEN CUANDO SE VAYA A SUBIR EL CÓDIGO A GITHUB
+  // POR FAVOR QUITAR EL TOKEN CUANDO SE VAYA A SUBIR EL CÓDIGO A GITHUB
+  // POR FAVOR QUITAR EL TOKEN CUANDO SE VAYA A SUBIR EL CÓDIGO A GITHUB
+  // POR FAVOR QUITAR EL TOKEN CUANDO SE VAYA A SUBIR EL CÓDIGO A GITHUB
+  // POR FAVOR QUITAR EL TOKEN CUANDO SE VAYA A SUBIR EL CÓDIGO A GITHUB
+  // POR FAVOR QUITAR EL TOKEN CUANDO SE VAYA A SUBIR EL CÓDIGO A GITHUB
+
   EnviarNotifiacionesPorSMS(message: string, receiver: string):void{
     console.log("INGRESO AL MÉTODO")
 
     const accountSid = 'ACdbb427d4e1267732aef393562bc25867'; // Your Account SID from www.twilio.com/console
-    const authToken = '1654cd7ee4a80a8d5b782e9545234f29'; // Your Auth Token from www.twilio.com/console
+    const authToken = ''; // Your Auth Token from www.twilio.com/console
     const toNumber = receiver // Receiver - You can add more than one in Twilio
     const fromNumber = '+14706194311' // // Sender - From a valid Twilio number
 
