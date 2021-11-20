@@ -8,7 +8,7 @@ export class MensajeCliente extends Entity {
     id: true,
     generated: true,
   })
-  idmensajecliente?: string;
+  id?: string;
 
   @property({
     type: 'string',

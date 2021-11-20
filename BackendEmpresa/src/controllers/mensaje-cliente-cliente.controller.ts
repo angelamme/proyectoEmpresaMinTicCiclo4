@@ -31,7 +31,7 @@ export class MensajeClienteClienteController {
     },
   })
   async getCliente(
-    @param.path.string('id') id: typeof MensajeCliente.prototype.idmensajecliente,
+    @param.path.string('id') id: typeof MensajeCliente.prototype.id,
   ): Promise<Cliente> {
     return this.mensajeClienteRepository.cliente(id);
   }

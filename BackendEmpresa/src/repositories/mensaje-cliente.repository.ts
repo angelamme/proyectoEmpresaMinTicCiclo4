@@ -6,11 +6,11 @@ import {ClienteRepository} from './cliente.repository';
 
 export class MensajeClienteRepository extends DefaultCrudRepository<
   MensajeCliente,
-  typeof MensajeCliente.prototype.idmensajecliente,
+  typeof MensajeCliente.prototype.id,
   MensajeClienteRelations
 > {
 
-  public readonly cliente: BelongsToAccessor<Cliente, typeof MensajeCliente.prototype.idmensajecliente>;
+  public readonly cliente: BelongsToAccessor<Cliente, typeof MensajeCliente.prototype.id>;
 
   constructor(
     @inject('datasources.proyectoEmpresa') dataSource: ProyectoEmpresaDataSource, @repository.getter('ClienteRepository') protected clienteRepositoryGetter: Getter<ClienteRepository>,

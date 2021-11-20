@@ -1,3 +1,4 @@
+import { service } from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -17,13 +18,19 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
-import {MensajeCliente} from '../models';
+import {Cliente, MensajeCliente} from '../models';
 import {MensajeClienteRepository} from '../repositories';
+import {ClienteRepository} from '../repositories';
+import {NotificacionesService} from '../services';
 
 export class MensajeClienteController {
   constructor(
     @repository(MensajeClienteRepository)
     public mensajeClienteRepository : MensajeClienteRepository,
+    @repository(ClienteRepository)
+    public clienteRepository : ClienteRepository,
+    @service(NotificacionesService)
+    public notificacionesService : NotificacionesService,
   ) {}
 
   @post('/mensaje-clientes')
@@ -37,14 +44,23 @@ export class MensajeClienteController {
         'application/json': {
           schema: getModelSchemaRef(MensajeCliente, {
             title: 'NewMensajeCliente',
-            exclude: ['idmensajeclente'],
+            exclude: ['id'],
           }),
         },
       },
     })
-    mensajeCliente: Omit<MensajeCliente, 'idmensajeclente'>,
+    mensajeCliente: Omit<MensajeCliente, 'id'>,
   ): Promise<MensajeCliente> {
-    return this.mensajeClienteRepository.create(mensajeCliente);
+    //obtener telefono del cliente, enviar notificacion SMS y guardar en BD
+             //let c = this.clienteRepository.findOne(where:{id: mensajeCliente.clienteId});
+    let c = this.clienteRepository.findById(mensajeCliente.clienteId);
+    if(c){
+      let telefono:string = (await c).telefono;
+      console.log("telefono del cliente: " + telefono)
+      this.notificacionesService.EnviarNotifiacionesPorSMS(mensajeCliente.mensajecliente, telefono)
+      return this.mensajeClienteRepository.create(mensajeCliente);
+    }
+    return new MensajeCliente;
   }
 
   @get('/mensaje-clientes/count')

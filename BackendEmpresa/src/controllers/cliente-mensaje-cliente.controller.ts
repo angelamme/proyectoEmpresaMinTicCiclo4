@@ -60,12 +60,12 @@ export class ClienteMensajeClienteController {
         'application/json': {
           schema: getModelSchemaRef(MensajeCliente, {
             title: 'NewMensajeClienteInCliente',
-            exclude: ['idmensajecliente'],
+            exclude: ['id'],
             optional: ['clienteId']
           }),
         },
       },
-    }) mensajeCliente: Omit<MensajeCliente, 'idmensajecliente'>,
+    }) mensajeCliente: Omit<MensajeCliente, 'id'>,
   ): Promise<MensajeCliente> {
     return this.clienteRepository.mensajeClientes(id).create(mensajeCliente);
   }
