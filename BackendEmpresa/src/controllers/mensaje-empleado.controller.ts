@@ -1,30 +1,32 @@
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {MensajeEmpleado} from '../models';
-import {MensajeEmpleadoRepository} from '../repositories';
+import {EmpleadoRepository, MensajeEmpleadoRepository} from '../repositories';
+import {NotificacionesService} from '../services';
 
 export class MensajeEmpleadoController {
   constructor(
     @repository(MensajeEmpleadoRepository)
-    public mensajeEmpleadoRepository : MensajeEmpleadoRepository,
-  ) {}
+    public mensajeEmpleadoRepository: MensajeEmpleadoRepository,
+    // Se inyecta el repositorio de empleado
+    @repository(EmpleadoRepository)
+    public EmpleadoRepository: EmpleadoRepository,
+    // Se inyecta el servicio de notificaciones
+    @service(NotificacionesService)
+    public notificacionesService: NotificacionesService,
+  ) { }
 
   @post('/mensaje-empleados')
   @response(200, {
@@ -44,7 +46,22 @@ export class MensajeEmpleadoController {
     })
     mensajeEmpleado: Omit<MensajeEmpleado, 'id'>,
   ): Promise<MensajeEmpleado> {
-    return this.mensajeEmpleadoRepository.create(mensajeEmpleado);
+    // Se busca el empleado por el id
+    let empleado = this.EmpleadoRepository.findById(mensajeEmpleado.empleadoId)
+    // Si encuentra el empleado se captura el telefono
+    if (empleado) {
+      let phone: string = (await empleado).telefono;
+
+      console.log("El empleado con id " + mensajeEmpleado.empleadoId + " fue encontrado.")
+      console.log("El telefono del empleado " + (await empleado).nombres + " " + (await empleado).apellidos + " es " + phone)
+
+      // Se llama al servicio de notificaciones
+      this.notificacionesService.EnviarNotifiacionesPorSMS(mensajeEmpleado.mensaje, phone)
+      return this.mensajeEmpleadoRepository.create(mensajeEmpleado);
+    } else {
+      console.log("el id " + mensajeEmpleado.empleadoId + " no existe en la base de datos, el mensaje no fue enviado")
+      return mensajeEmpleado;
+    }
   }
 
   @get('/mensaje-empleados/count')
