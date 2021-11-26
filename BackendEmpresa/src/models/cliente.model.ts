@@ -53,12 +53,6 @@ export class Cliente extends Entity {
   })
   clave: string;
 
-  @property({
-    type: 'string',
-    required: true,
-  })
-  rol: string;
-
   @belongsTo(() => Empresa)
   empresaId: string;
 
