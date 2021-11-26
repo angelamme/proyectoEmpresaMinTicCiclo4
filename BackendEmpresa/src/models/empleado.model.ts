@@ -54,6 +54,12 @@ export class Empleado extends Entity {
   sueldo: number;
 
   @property({
+    type: 'string',
+    required: true,
+  })
+  clave: string;
+
+  @property({
     type: 'boolean',
     required: true,
   })

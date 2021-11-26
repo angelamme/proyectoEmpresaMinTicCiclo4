@@ -1,3 +1,4 @@
+import { service } from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -19,11 +20,14 @@ import {
 } from '@loopback/rest';
 import {Empleado} from '../models';
 import {EmpleadoRepository} from '../repositories';
+import { AutenticacionService } from '../services';
 
 export class EmpleadoController {
   constructor(
     @repository(EmpleadoRepository)
     public empleadoRepository : EmpleadoRepository,
+    @service(AutenticacionService)
+    public servicioAutenticacionEmpleado : AutenticacionService
   ) {}
 
   @post('/empleados')
@@ -44,7 +48,11 @@ export class EmpleadoController {
     })
     empleado: Omit<Empleado, 'id'>,
   ): Promise<Empleado> {
-    return this.empleadoRepository.create(empleado);
+    let clave = this.servicioAutenticacionEmpleado.GenerarClave();
+    let claveCifrada = this.servicioAutenticacionEmpleado.CifrarClave(clave);
+    empleado.clave = claveCifrada;
+    let e = await this.empleadoRepository.create(empleado);
+    return e;
   }
 
   @get('/empleados/count')

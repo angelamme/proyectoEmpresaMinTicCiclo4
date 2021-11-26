@@ -27,12 +27,6 @@ export class Cliente extends Entity {
     type: 'string',
     required: true,
   })
-  telefono: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
   direccion: string;
 
   @property({
@@ -46,6 +40,24 @@ export class Cliente extends Entity {
     required: true,
   })
   fechaNacimiento: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  telefono: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  clave: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  rol: string;
 
   @belongsTo(() => Empresa)
   empresaId: string;
