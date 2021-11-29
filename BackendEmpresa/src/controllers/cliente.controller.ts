@@ -34,6 +34,36 @@ export class ClienteController {
     public notificacionesServices: NotificacionesService,
   ) {}
 
+  @post('/login', {
+   responses: {
+    '200': {
+    descripcion: 'login cliente',
+    },
+   },
+   
+  })
+
+  async login(
+    @requestBody() credenciales: Credenciales
+    
+  ){
+      let p= await this.servicioAutenticacionCliente.IdentificarCliente(credenciales.usuario, credenciales.clave)
+      if (p){
+       let token = this.servicioAutenticacionCliente.GenerarTokenJWTCliente(p)
+      return{
+        datos:{
+          nombre: p.nombres,
+          correo: p.correo,
+          id: p.id,
+
+        },
+        tk: token
+      }
+   }
+      else{
+throw new HttpErrors[401]("Datos invalidos");
+      }
+    }
   @post('/clientes')
   @response(200, {
     description: 'Cliente model instance',
@@ -63,6 +93,9 @@ export class ClienteController {
     this.notificacionesServices.EnviarNotifiacionesPorCorreo(cliente.email, asunto, mensaje);
     this.notificacionesServices.EnviarNotifiacionesPorSMS(mensaje, cliente.telefono);
     return c;
+
+  //  let mensaje = 'hola ${cliente.nombres},su nombre de usuario es: ${cliente.correo} y su contraseña es: ${clave}'
+   //this.notification.
   }
 
   @post("/identificarCliente", {
