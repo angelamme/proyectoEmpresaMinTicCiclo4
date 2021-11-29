@@ -65,6 +65,33 @@ export class ClienteController {
     return c;
   }
 
+  @post("/identificarCliente", {
+    responses:{
+      '200':{
+        description: "Identificacion del cliente"
+      }
+    }
+  })
+  async identificarCliente(
+    @requestBody() credenciales: Credenciales
+  ){
+    let c = await this.servicioAutenticacionCliente.IdentificarCliente(credenciales.usuario, credenciales.clave)
+    if(c){
+
+      let token = this.servicioAutenticacionCliente.GenerarTokenJWTCliente(c);
+      return {
+        data: {
+          nombres: c.nombres,
+          email: c.email,
+          id: c.id,
+        },
+        tk: token
+      }
+    }else{
+      throw new HttpErrors[401]("Datos incorrectos")
+    }
+  }
+
   @get('/clientes/count')
   @response(200, {
     description: 'Cliente model count',
