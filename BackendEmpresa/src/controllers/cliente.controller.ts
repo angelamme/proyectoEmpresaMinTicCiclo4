@@ -17,17 +17,21 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {Cliente} from '../models';
+import {Cliente, Credenciales} from '../models';
 import {ClienteRepository} from '../repositories';
 import { AutenticacionService } from '../services';
+import { NotificacionesService } from '../services';
 
 export class ClienteController {
   constructor(
     @repository(ClienteRepository)
     public clienteRepository : ClienteRepository,
     @service(AutenticacionService)
-    public servicioAutenticacionCliente : AutenticacionService
+    public servicioAutenticacionCliente : AutenticacionService,
+    @service(NotificacionesService)
+    public notificacionesServices: NotificacionesService,
   ) {}
 
   @post('/clientes')
@@ -52,6 +56,12 @@ export class ClienteController {
     let claveCifrada = this.servicioAutenticacionCliente.CifrarClave(clave);
     cliente.clave = claveCifrada;
     let c = await this.clienteRepository.create(cliente);
+
+    let asunto = `Servicio de Notificacion Por Email Cliente Team D Desarrolladores`;
+    let mensaje = `Hola ${cliente.nombres} ${cliente.apellidos}, su nombre de usuario es: ${cliente.email} y su contraceña es ${clave}`;
+
+    this.notificacionesServices.EnviarNotifiacionesPorCorreo(cliente.email, asunto, mensaje);
+    this.notificacionesServices.EnviarNotifiacionesPorSMS(mensaje, cliente.telefono);
     return c;
   }
 

@@ -37,7 +37,7 @@ export class NotificacionesService {
       .create({
         body: message,
         to: toNumber,
-        from: fromNumber, 
+        from: fromNumber,
       })
       .then((message:any) => console.log(message.sid));
   }
