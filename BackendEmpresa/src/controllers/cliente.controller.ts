@@ -44,7 +44,7 @@ export class ClienteController {
   })
 
   async login(
-    @requestBody() credenciales: Credenciales
+  @requestBody() credenciales: Credenciales
     
   ){
       let p= await this.servicioAutenticacionCliente.IdentificarCliente(credenciales.usuario, credenciales.clave)
@@ -53,7 +53,7 @@ export class ClienteController {
       return{
         datos:{
           nombre: p.nombres,
-          correo: p.correo,
+          correo: p.email,
           id: p.id,
 
         },
@@ -61,7 +61,7 @@ export class ClienteController {
       }
    }
       else{
-throw new HttpErrors[401]("Datos invalidos");
+        throw new HttpErrors[401]("Datos invalidos");
       }
     }
   @post('/clientes')
@@ -88,7 +88,7 @@ throw new HttpErrors[401]("Datos invalidos");
     let c = await this.clienteRepository.create(cliente);
 
     let asunto = `Servicio de Notificacion Por Email Cliente Team D Desarrolladores`;
-    let mensaje = `Hola ${cliente.nombres} ${cliente.apellidos}, su nombre de usuario es: ${cliente.email} y su contraceña es ${clave}`;
+    let mensaje = `Hola ${cliente.nombres} ${cliente.apellidos}, su nombre de usuario es: ${cliente.email} y su contraseña es ${clave}`;
 
     this.notificacionesServices.EnviarNotifiacionesPorCorreo(cliente.email, asunto, mensaje);
     this.notificacionesServices.EnviarNotifiacionesPorSMS(mensaje, cliente.telefono);

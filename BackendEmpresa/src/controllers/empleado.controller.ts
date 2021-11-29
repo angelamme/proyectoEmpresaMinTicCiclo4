@@ -17,17 +17,21 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {Empleado} from '../models';
+import {Credenciales, Empleado} from '../models';
 import {EmpleadoRepository} from '../repositories';
 import { AutenticacionService } from '../services';
+import { NotificacionesService } from '../services';
 
 export class EmpleadoController {
   constructor(
     @repository(EmpleadoRepository)
     public empleadoRepository : EmpleadoRepository,
     @service(AutenticacionService)
-    public servicioAutenticacionEmpleado : AutenticacionService
+    public servicioAutenticacionEmpleado : AutenticacionService,
+    @service(NotificacionesService)
+    public notificacionesServices: NotificacionesService,
   ) {}
 
   @post('/empleados')
@@ -52,7 +56,40 @@ export class EmpleadoController {
     let claveCifrada = this.servicioAutenticacionEmpleado.CifrarClave(clave);
     empleado.clave = claveCifrada;
     let e = await this.empleadoRepository.create(empleado);
+
+    let asunto = `Servicio de Notificacion Por Email Empleado Team D Desarrolladores`;
+    let mensaje = `Hola ${empleado.nombres} ${empleado.apellidos}, su nombre de usuario es: ${empleado.email} y su contraseña es ${clave}`;
+
+    this.notificacionesServices.EnviarNotifiacionesPorCorreo(empleado.email, asunto, mensaje);
+    this.notificacionesServices.EnviarNotifiacionesPorSMS(mensaje, empleado.telefono);
     return e;
+  }
+
+  @post("/identificarEmpleado", {
+    responses:{
+      '200':{
+        description: "Identificacion del cliente"
+      }
+    }
+  })
+  async identificarEmpleado(
+    @requestBody() credenciales: Credenciales
+  ){
+    let e = await this.servicioAutenticacionEmpleado.IdentificarEmpleado(credenciales.usuario, credenciales.clave)
+    if(e){
+
+      let token = this.servicioAutenticacionEmpleado.GenerarTokenJWTEmpleado(e);
+      return {
+        data: {
+          nombres: e.nombres,
+          email: e.email,
+          id: e.id,
+        },
+        tk: token
+      }
+    }else{
+      throw new HttpErrors[401]("Datos incorrectos")
+    }
   }
 
   @get('/empleados/count')
