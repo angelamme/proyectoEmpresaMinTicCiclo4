@@ -18,7 +18,7 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
-import {Cliente} from '../models';
+import {Cliente, Credenciales} from '../models';
 import {ClienteRepository} from '../repositories';
 import { AutenticacionService } from '../services';
 
@@ -30,6 +30,36 @@ export class ClienteController {
     public servicioAutenticacionCliente : AutenticacionService
   ) {}
 
+  @post('/login', {
+   responses: {
+    '200': {
+    descripcion: 'login cliente',
+    },
+   },
+   
+  })
+
+  async login(
+    @requestBody() credenciales: Credenciales
+    
+  ){
+      let p= await this.servicioAutenticacionCliente.IdentificarCliente(credenciales.usuario, credenciales.clave)
+      if (p){
+       let token = this.servicioAutenticacionCliente.GenerarTokenJWTCliente(p)
+      return{
+        datos:{
+          nombre: p.nombres,
+          correo: p.correo,
+          id: p.id,
+
+        },
+        tk: token
+      }
+   }
+      else{
+throw new HttpErrors[401]("Datos invalidos");
+      }
+    }
   @post('/clientes')
   @response(200, {
     description: 'Cliente model instance',
@@ -53,6 +83,9 @@ export class ClienteController {
     cliente.clave = claveCifrada;
     let c = await this.clienteRepository.create(cliente);
     return c;
+
+  //  let mensaje = 'hola ${cliente.nombres},su nombre de usuario es: ${cliente.correo} y su contraseña es: ${clave}'
+   //this.notification.
   }
 
   @get('/clientes/count')
