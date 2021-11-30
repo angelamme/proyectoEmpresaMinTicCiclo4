@@ -92,3 +92,6 @@ export class AutenticacionService {
   }
 
 }
+
+//npm i @loopback/authentication --force
+//npm i @loopback/security --force
