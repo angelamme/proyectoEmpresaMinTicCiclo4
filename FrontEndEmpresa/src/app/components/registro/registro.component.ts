@@ -11,6 +11,7 @@ export class RegistroComponent implements OnInit {
   clave: string;
   nombres: string;
   apellidos: string;
+  rol: string;
   confirmPassword: string;
   passwordError: boolean;
 
@@ -18,6 +19,7 @@ export class RegistroComponent implements OnInit {
     this.email="";
     this.clave="";
     this.apellidos="";
+    this.rol="";
     this.nombres="";
     this.confirmPassword="";
     this.passwordError=false;
