@@ -13,6 +13,7 @@ import { ListarEmpresaComponent } from './components/empresa/listar-empresa/list
 import { AgregarEmpresaComponent } from './components/empresa/agregar-empresa/agregar-empresa.component';
 import { EditarEmpresaComponent } from './components/empresa/editar-empresa/editar-empresa.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,7 @@ import { EditarEmpresaComponent } from './components/empresa/editar-empresa/edit
     DetallesEmpresaComponent,
     ListarEmpresaComponent,
     AgregarEmpresaComponent,
-    EditarEmpresaComponent
+    EditarEmpresaComponent,
   ],
   imports: [
     BrowserModule,
