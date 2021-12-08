@@ -7,9 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarClienteComponent implements OnInit {
 
-  constructor() { }
+  nombres: string;
+  apellidos: string;
+  telefono: string;
+  direccion: string;
+  correo: string;
+  fechaNacimiento: Date;
+  razonSocial: string;
+  listaEmpresas: string[] = ["prueba 1", "prueba 2", "prueba 3"];
+
+  constructor() {
+    this.nombres="";
+    this.apellidos="";
+    this.telefono="";
+    this.direccion="";
+    this.correo="";
+    this.fechaNacimiento=new Date();
+    this.razonSocial="";  
+   }
 
   ngOnInit(): void {
+  }
+  Agregar(){
+    console.log("Agregar empleado");
+  }
+  Volver(){
+    console.log("Volver de Agregar empleado");
   }
 
 }
