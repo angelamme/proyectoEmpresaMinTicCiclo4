@@ -15,6 +15,10 @@ import { DetallesEmpresaComponent } from './components/empresa/detalles-empresa/
 import { ListarEmpresaComponent } from './components/empresa/listar-empresa/listar-empresa.component';
 import { AgregarEmpresaComponent } from './components/empresa/agregar-empresa/agregar-empresa.component';
 import { EditarEmpresaComponent } from './components/empresa/editar-empresa/editar-empresa.component';
+import { AgregarClienteComponent } from './components/cliente/agregar-cliente/agregar-cliente.component';
+import { EditarClienteComponent } from './components/cliente/editar-cliente/editar-cliente.component';
+import { ListarClienteComponent } from './components/cliente/listar-cliente/listar-cliente.component';
+import { DetallesClienteComponent } from './components/cliente/detalles-cliente/detalles-cliente.component';
 
 
 @NgModule({
@@ -24,10 +28,17 @@ import { EditarEmpresaComponent } from './components/empresa/editar-empresa/edit
     RegistroComponent,
     LoginRegistroComponent,
     AgregarEmpleadoComponent,
+    DetallesEmpleadoComponent,
+    ListarEmpleadoComponent,
+    EditarEmpleadoComponent,
     DetallesEmpresaComponent,
     ListarEmpresaComponent,
     AgregarEmpresaComponent,
     EditarEmpresaComponent,
+    AgregarClienteComponent,
+    EditarClienteComponent,
+    ListarClienteComponent,
+    DetallesClienteComponent,
   ],
   imports: [
     BrowserModule,
