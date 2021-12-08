@@ -29,10 +29,10 @@ export class AgregarClienteComponent implements OnInit {
   ngOnInit(): void {
   }
   Agregar(){
-    console.log("Agregar empleado");
+    console.log("Agregar cliente");
   }
   Volver(){
-    console.log("Volver de Agregar empleado");
+    console.log("Volver a agregar cliente");
   }
 
 }
