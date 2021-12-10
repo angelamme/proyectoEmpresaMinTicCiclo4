@@ -253,12 +253,25 @@ p{
     margin: 10px;
     padding-right: 20px;
 }
+.perfil-usuario-empresa h1{
+  width: 100%;
+  font-weight: bolder;
+  color: #1d1b31;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+.encabezado h4{
+    text-shadow: #cfcfcf;
+    font-weight: bolder;
+}
 .tiulo-dash h1{
   font-weight: bolder;
   color:#11101d;
   text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 .pie{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background-color:#11101D;
     color: #E4E9F7;
 }
@@ -385,4 +398,19 @@ form .btn{
 }
 input[type=checkbox], input[type=radio] {
   box-shadow: none;
+}
+.contenedor-header table{
+  width: 100vw;
+}
+.contenedor-header td{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.encabezado h4 .logo-app{
+  color: rgb(60, 255, 0);
+  text-shadow: #aeb5fa;
+  font-weight: bolder;
+}
+.contenido-componentes{
+  height: 100%;
 }

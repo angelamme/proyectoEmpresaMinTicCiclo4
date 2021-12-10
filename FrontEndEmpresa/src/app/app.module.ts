@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegistroComponent } from './components/registro/registro.component';
-import { LoginRegistroComponent } from './components/login-registro/login-registro.component';
+import { LoginComponent } from './components/autorizacion/login/login.component';
+import { RegistroComponent } from './components/autorizacion/registro/registro.component';
+import { LoginRegistroComponent } from './components/autorizacion/login-registro/login-registro.component';
 import { AgregarEmpleadoComponent } from './components/empleado/agregar-empleado/agregarEmpleado.component';
 import { DetallesEmpleadoComponent } from './components/empleado/detalles-empleado/detalles-empleado.component';
 import { ListarEmpleadoComponent } from './components/empleado/listar-empleado/listar-empleado.component';
@@ -19,6 +20,14 @@ import { AgregarClienteComponent } from './components/cliente/agregar-cliente/ag
 import { EditarClienteComponent } from './components/cliente/editar-cliente/editar-cliente.component';
 import { ListarClienteComponent } from './components/cliente/listar-cliente/listar-cliente.component';
 import { DetallesClienteComponent } from './components/cliente/detalles-cliente/detalles-cliente.component';
+import { FooterComponent } from './components/compartidos/footer/footer.component';
+import { HeaderComponent } from './components/compartidos/header/header.component';
+import { MenuClienteComponent } from './components/compartidos/menu-cliente/menu-cliente.component';
+import { MenuEmpleadoComponent } from './components/compartidos/menu-empleado/menu-empleado.component';
+import { PerfilClienteComponent } from './components/perfiles/perfil-cliente/perfil-cliente.component';
+import { PerfilEmpleadoComponent } from './components/perfiles/perfil-empleado/perfil-empleado.component';
+import { PerfilUsuarioComponent } from './components/perfiles/perfil-usuario/perfil-usuario.component';
+
 
 
 @NgModule({
@@ -39,13 +48,22 @@ import { DetallesClienteComponent } from './components/cliente/detalles-cliente/
     EditarClienteComponent,
     ListarClienteComponent,
     DetallesClienteComponent,
+    FooterComponent,
+    HeaderComponent,
+    MenuClienteComponent,
+    MenuEmpleadoComponent,
+    PerfilClienteComponent,
+    PerfilEmpleadoComponent,
+    PerfilUsuarioComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
