@@ -3,4 +3,5 @@ export class ModelProducto{
   nombre?:string;
   descripcion?:string;
   valorUnitario?:number;
+  empresaId?: string;
 }

@@ -6,4 +6,6 @@ export class ModelCliente{
   direccion?:string;
   email?:string;
   fechaNacimiento?:string;
+  clave?:string;
+  empresaId?: string;
 }
