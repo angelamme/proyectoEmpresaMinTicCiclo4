@@ -11,12 +11,14 @@ import { SeguridadService } from 'src/app/servicios/seguridad.service';
 export class PerfilUsuarioComponent implements OnInit {
 
   nombreUsuario ?: string;
+  rol?:string;
   subs: Subscription = new Subscription();
   constructor(private servicioSeguridad: SeguridadService) { }
 
   ngOnInit(): void {
     this.subs = this.servicioSeguridad.ObtenerDatosUsuarioSesion().subscribe((datos:CredencialesModel)=>{
       this.nombreUsuario = datos.data?.nombres + " " + datos.data?.apellidos;
+      this.rol=datos.rol;
     })
   }
 

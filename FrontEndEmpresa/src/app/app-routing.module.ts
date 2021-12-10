@@ -13,11 +13,11 @@ import { AgregarClienteComponent } from './components/cliente/agregar-cliente/ag
 import { DetallesClienteComponent } from './components/cliente/detalles-cliente/detalles-cliente.component';
 import { EditarClienteComponent } from './components/cliente/editar-cliente/editar-cliente.component';
 import { ListarClienteComponent } from './components/cliente/listar-cliente/listar-cliente.component';
-import { LoginRegistroComponent } from './components/autorizacion/login-registro/login-registro.component';
+import { PerfilUsuarioComponent } from './components/perfiles/perfil-usuario/perfil-usuario.component';
 
 const routes: Routes = [
   { path: "", component: AppComponent, pathMatch: "full" },
-  { path: "login", component: LoginRegistroComponent, pathMatch: "full" },
+  { path: "inicio", component: PerfilUsuarioComponent, pathMatch: "full" },
   { path: "agregar-empresa", component: AgregarEmpresaComponent, pathMatch: "full" },
   { path: "detalles-empresa", component: DetallesEmpresaComponent, pathMatch: "full" },
   { path: "editar-empresa", component: EditarEmpresaComponent, pathMatch: "full" },
