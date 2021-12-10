@@ -1,11 +1,4 @@
-export class ModeloEmpleado{
+export class ModeloMensajeCliente{
   id?:string;
-  nombres?:string;
-  apellidos?:string;
-  telefono?:string;
-  direccion?:string;
-  email?:string;
-  fechaNacimiento?:string;
-  sueldo?:number;
-  esDirectivo?:boolean;
+  mensajecliente?:string;
 }
