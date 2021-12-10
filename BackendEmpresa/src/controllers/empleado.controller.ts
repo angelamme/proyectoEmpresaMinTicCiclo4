@@ -53,7 +53,12 @@ export class EmpleadoController {
     empleado: Omit<Empleado, 'id'>,
   ): Promise<Empleado> {
     let clave = this.servicioAutenticacionEmpleado.GenerarClave();
-    let claveCifrada = this.servicioAutenticacionEmpleado.CifrarClave(clave);
+    let claveCifrada;
+    if(empleado.clave==""){
+      claveCifrada = this.servicioAutenticacionEmpleado.CifrarClave(clave);
+    }else{
+      claveCifrada = this.servicioAutenticacionEmpleado.CifrarClave(empleado.clave);
+    }
     empleado.clave = claveCifrada;
     let e = await this.empleadoRepository.create(empleado);
 
@@ -82,6 +87,7 @@ export class EmpleadoController {
       return {
         data: {
           nombres: e.nombres,
+          apellidos: e.apellidos,
           email: e.email,
           id: e.id,
         },

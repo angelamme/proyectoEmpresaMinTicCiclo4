@@ -83,7 +83,12 @@ export class ClienteController {
     cliente: Omit<Cliente, 'id'>,
   ): Promise<Cliente> {
     let clave = this.servicioAutenticacionCliente.GenerarClave();
-    let claveCifrada = this.servicioAutenticacionCliente.CifrarClave(clave);
+    let claveCifrada;
+    if(cliente.clave==""){
+      claveCifrada = this.servicioAutenticacionCliente.CifrarClave(clave);
+    }else{
+      claveCifrada = this.servicioAutenticacionCliente.CifrarClave(cliente.clave);
+    }
     cliente.clave = claveCifrada;
     let c = await this.clienteRepository.create(cliente);
 
@@ -115,6 +120,7 @@ export class ClienteController {
       return {
         data: {
           nombres: c.nombres,
+          apellidos: c.apellidos,
           email: c.email,
           id: c.id,
         },
