@@ -1,4 +1,4 @@
-export class ModeloProducto{
+export class ModelProducto{
   id?:string;
   nombre?:string;
   descripcion?:string;

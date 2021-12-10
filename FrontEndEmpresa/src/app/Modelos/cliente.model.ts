@@ -1,4 +1,4 @@
-export class ModeloEmpleado{
+export class ModelCliente{
   id?:string;
   nombres?:string;
   apellidos?:string;
@@ -6,6 +6,4 @@ export class ModeloEmpleado{
   direccion?:string;
   email?:string;
   fechaNacimiento?:string;
-  sueldo?:number;
-  esDirectivo?:boolean;
 }
