@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-empresa',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarEmpresaComponent implements OnInit {
 
-  constructor() { }
+  ediEmpValidador: FormGroup = this.fb.group({
+    'nit':['',[Validators.required]],
+    'razonSocial': [Validators.required]
+  });
+
+  nit: string;
+  razonSocial: string;
+
+  constructor(private fb: FormBuilder) {
+    this.nit = "";
+    this.razonSocial = "";
+   }
 
   ngOnInit(): void {
   }
 
+  editar_empresa(){
+    alert("Método editar empresa ejecutado!")
+  }
 }

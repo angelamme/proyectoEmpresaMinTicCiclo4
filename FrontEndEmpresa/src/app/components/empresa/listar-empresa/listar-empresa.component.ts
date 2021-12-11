@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarEmpresaComponent implements OnInit {
 
-  constructor() { }
+  listaEmpresas: string[];
+
+  constructor() { 
+
+    this.listaEmpresas = ["Empresa1","Empresa2","Empresa3","Empresa4","Empresa5"];
+  }
 
   ngOnInit(): void {
   }

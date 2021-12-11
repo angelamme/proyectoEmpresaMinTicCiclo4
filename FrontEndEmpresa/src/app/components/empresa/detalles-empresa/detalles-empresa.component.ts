@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetallesEmpresaComponent implements OnInit {
 
-  constructor() { }
+  nit: string;
+  razonSocial: string;
+
+  constructor() {
+    this.nit = "";
+    this.razonSocial = "";
+   }
 
   ngOnInit(): void {
   }
