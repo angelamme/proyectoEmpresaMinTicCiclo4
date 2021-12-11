@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModelMensajeEmpleado } from '../Modelos/mensaje-empleado.model';
+import { ModelPedido } from '../Modelos/pedido.model';
 import { SeguridadService } from './seguridad.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MensajesEmpleadoService {
+export class PedidoService {
 
   token:string = "";
   url:string = 'http://localhost:3000';
@@ -15,32 +15,32 @@ export class MensajesEmpleadoService {
     this.token = seguridadServicio.ObtenerToken();
   }
 
-  ObtenerMensajesDeEmpleado():Observable<ModelMensajeEmpleado[]>{
-    return this.http.get<ModelMensajeEmpleado[]>(`${this.url}/mensaje-empleados`, {
+  ObtenerPedido():Observable<ModelPedido[]>{
+    return this.http.get<ModelPedido[]>(`${this.url}/pedidos`, {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  CrearMensajeDeEmpleado(mensaje:ModelMensajeEmpleado):Observable<ModelMensajeEmpleado>{
-    return this.http.post<ModelMensajeEmpleado>(`${this.url}/mensaje-empleados`, mensaje,{
+  CrearPedido(pedido:ModelPedido):Observable<ModelPedido>{
+    return this.http.post<ModelPedido>(`${this.url}/pedidos`, pedido,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  ActualizarMensajeDeEmpleado(mensaje:ModelMensajeEmpleado):Observable<ModelMensajeEmpleado>{
-    return this.http.put<ModelMensajeEmpleado>(`${this.url}/mensaje-empleados`, mensaje,{
+  ActualizarPedido(pedido:ModelPedido):Observable<ModelPedido>{
+    return this.http.put<ModelPedido>(`${this.url}/pedidos`, pedido,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  EliminarMensajeDeEmpleado(id: string):Observable<any>{
-    return this.http.delete(`${this.url}/mensaje-empleados/${id}`,{
+  EliminarPedido(id: string):Observable<any>{
+    return this.http.delete(`${this.url}/pedidos/${id}`,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })

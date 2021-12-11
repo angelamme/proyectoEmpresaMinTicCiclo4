@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModelMensajeEmpleado } from '../Modelos/mensaje-empleado.model';
+import { ModelProductosDePedido } from '../Modelos/productos-de-pedido.model';
 import { SeguridadService } from './seguridad.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MensajesEmpleadoService {
+export class ProductosDePedidoService {
 
   token:string = "";
   url:string = 'http://localhost:3000';
@@ -15,32 +15,32 @@ export class MensajesEmpleadoService {
     this.token = seguridadServicio.ObtenerToken();
   }
 
-  ObtenerMensajesDeEmpleado():Observable<ModelMensajeEmpleado[]>{
-    return this.http.get<ModelMensajeEmpleado[]>(`${this.url}/mensaje-empleados`, {
+  ObtenerProductoDePedido():Observable<ModelProductosDePedido[]>{
+    return this.http.get<ModelProductosDePedido[]>(`${this.url}/productos-de-pedidos`, {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  CrearMensajeDeEmpleado(mensaje:ModelMensajeEmpleado):Observable<ModelMensajeEmpleado>{
-    return this.http.post<ModelMensajeEmpleado>(`${this.url}/mensaje-empleados`, mensaje,{
+  CrearProductoDePedido(producto:ModelProductosDePedido):Observable<ModelProductosDePedido>{
+    return this.http.post<ModelProductosDePedido>(`${this.url}/productos-de-pedidos`, producto,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  ActualizarMensajeDeEmpleado(mensaje:ModelMensajeEmpleado):Observable<ModelMensajeEmpleado>{
-    return this.http.put<ModelMensajeEmpleado>(`${this.url}/mensaje-empleados`, mensaje,{
+  ActualizarProductoDePedido(producto:ModelProductosDePedido):Observable<ModelProductosDePedido>{
+    return this.http.put<ModelProductosDePedido>(`${this.url}/productos-de-pedidos`, producto,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  EliminarMensajeDeEmpleado(id: string):Observable<any>{
-    return this.http.delete(`${this.url}/mensaje-empleados/${id}`,{
+  EliminarProductoDePedido(id: string):Observable<any>{
+    return this.http.delete(`${this.url}/productos-de-pedidos/${id}`,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
