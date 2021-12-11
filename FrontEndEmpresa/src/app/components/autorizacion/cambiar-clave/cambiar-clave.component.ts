@@ -44,7 +44,7 @@ export class CambiarClaveComponent implements OnInit {
           this.CambiarClaveEmpleado(datos.data?.email!);
         }
         if(datos.rol=="Cliente"){
-          this.CambiarClaveEmpleado(datos.data?.email!);
+          this.CambiarClaveCliente(datos.data?.email!);
         }
       }
     });
