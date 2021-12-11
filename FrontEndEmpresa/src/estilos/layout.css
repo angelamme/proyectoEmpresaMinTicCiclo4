@@ -202,3 +202,7 @@ input[type=checkbox], input[type=radio] {
 .contenido-componentes{
   height: 100%;
 }
+.cuadro-perfil{
+  padding: 30px;
+  border-radius: 10;
+}

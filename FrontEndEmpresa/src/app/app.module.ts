@@ -27,6 +27,8 @@ import { MenuEmpleadoComponent } from './components/compartidos/menu-empleado/me
 import { PerfilClienteComponent } from './components/perfiles/perfil-cliente/perfil-cliente.component';
 import { PerfilEmpleadoComponent } from './components/perfiles/perfil-empleado/perfil-empleado.component';
 import { PerfilUsuarioComponent } from './components/perfiles/perfil-usuario/perfil-usuario.component';
+import { CambiarClaveComponent } from './components/autorizacion/cambiar-clave/cambiar-clave.component';
+import { MensajesUsuarioComponent } from './components/perfiles/mensajes-usuario/mensajes-usuario.component';
 
 
 
@@ -55,6 +57,8 @@ import { PerfilUsuarioComponent } from './components/perfiles/perfil-usuario/per
     PerfilClienteComponent,
     PerfilEmpleadoComponent,
     PerfilUsuarioComponent,
+    CambiarClaveComponent,
+    MensajesUsuarioComponent,
   ],
   imports: [
     BrowserModule,
