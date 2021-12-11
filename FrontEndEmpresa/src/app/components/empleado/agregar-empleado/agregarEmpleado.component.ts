@@ -40,11 +40,12 @@ export class AgregarEmpleadoComponent implements OnInit {
     empleado.telefono = this.EmpleValidador.controls["telefono"].value;
     empleado.direccion = this.EmpleValidador.controls["direccion"].value;
     empleado.email = this.EmpleValidador.controls["email"].value;
-    empleado.fechaNacimiento = this.EmpleValidador.controls["fechaNacimiento"].value;
+    empleado.fechaNacimiento = new Date(this.EmpleValidador.controls["fechaNacimiento"].value);
     empleado.sueldo = parseInt(this.EmpleValidador.controls["sueldo"].value);
     empleado.esDirectivo = Boolean(this.EmpleValidador.controls["esDirectivo"].value);
     empleado.razonSocial = this.EmpleValidador.controls["razonSocial"].value;
     empleado.empresaId = "61a5745724a6402a80cbf33e";
+    empleado.clave = "";
     this.ServicioEmpleado.CrearEmpleado(empleado).subscribe((datos:ModelEmpleado)=>{
       alert("Empleado almacenado correctamente");
       this.router.navigate(["/listar-empleado"]);

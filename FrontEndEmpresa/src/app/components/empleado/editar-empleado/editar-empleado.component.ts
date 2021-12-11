@@ -71,7 +71,7 @@ export class EditarEmpleadoComponent implements OnInit {
     empleado.id=this.id;
     this.ServicioEmpleado.ActualizarEmpleado(empleado).subscribe((datos:ModelEmpleado)=>{
       alert("Empleado actualizado correctamente");
-      this.router.navigate(["/listar-producto"]);
+      this.router.navigate(["/listar-empleado"]);
     }, (error:any)=>{
       alert("Ocurrio un error al actualizar el empleado");
       console.log(error);

@@ -5,7 +5,7 @@ export class ModelEmpleado{
   telefono?:string;
   direccion?:string;
   email?:string;
-  fechaNacimiento?:string;
+  fechaNacimiento?:Date;
   sueldo?:number;
   esDirectivo?:boolean;
   razonSocial?: string;
