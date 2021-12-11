@@ -37,9 +37,11 @@ export class ListarProductoComponent implements OnInit {
     .then((willDelete) => {
       if (willDelete) {
         this.productoServicio.EliminarProducto(id).subscribe((data:any)=>{
+          this.listaProductos = this.listaProductos.filter(item => item.id != id);
           swal("Producto eliminado correctamente", {
             icon: "success",
           });
+
         },(error:any)=>{
           console.log(error);
           swal("Ocurrió un error al intentar eliminar el producto", {
@@ -48,6 +50,6 @@ export class ListarProductoComponent implements OnInit {
         });
       }
     });
-    this.router.navigate(['listar-producto']);
+    this.router.navigate(['/listar-producto']);
   }
 }
