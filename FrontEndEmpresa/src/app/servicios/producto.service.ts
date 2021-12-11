@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModelMensajeEmpleado } from '../Modelos/mensaje-empleado.model';
+import { ModelProducto } from '../Modelos/producto.model';
 import { SeguridadService } from './seguridad.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MensajesEmpleadoService {
+export class ProductoService {
 
   token:string = "";
   url:string = 'http://localhost:3000';
@@ -15,32 +15,32 @@ export class MensajesEmpleadoService {
     this.token = seguridadServicio.ObtenerToken();
   }
 
-  ObtenerMensajesDeEmpleado():Observable<ModelMensajeEmpleado[]>{
-    return this.http.get<ModelMensajeEmpleado[]>(`${this.url}/mensaje-empleados`, {
+  ObtenerProductos():Observable<ModelProducto[]>{
+    return this.http.get<ModelProducto[]>(`${this.url}/productos`, {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  CrearMensajeDeEmpleado(mensaje:ModelMensajeEmpleado):Observable<ModelMensajeEmpleado>{
-    return this.http.post<ModelMensajeEmpleado>(`${this.url}/mensaje-empleados`, mensaje,{
+  CrearProducto(producto:ModelProducto):Observable<ModelProducto>{
+    return this.http.post<ModelProducto>(`${this.url}/productos`, producto,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  ActualizarMensajeDeEmpleado(mensaje:ModelMensajeEmpleado):Observable<ModelMensajeEmpleado>{
-    return this.http.put<ModelMensajeEmpleado>(`${this.url}/mensaje-empleados`, mensaje,{
+  ActualizarProducto(producto:ModelProducto):Observable<ModelProducto>{
+    return this.http.put<ModelProducto>(`${this.url}/productos`, producto,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
     });
   }
 
-  EliminarMensajeDeEmpleado(id: string):Observable<any>{
-    return this.http.delete(`${this.url}/mensaje-empleados/${id}`,{
+  EliminarProducto(id: string):Observable<any>{
+    return this.http.delete(`${this.url}/productos/${id}`,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })
