@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModelEmpleado } from 'src/app/Modelos/empleado.model';
 import { EmpleadoService } from 'src/app/servicios/empleado.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-listar-empleado',
@@ -25,18 +26,28 @@ export class ListarEmpleadoComponent implements OnInit {
   }
 
   EliminarEmpleado(id: string){
-    console.log("se va a eliminar");
-    console.log(id);
-    this.empleadoServicio.EliminarEmpleado(id).subscribe((data:any)=>{
-      console.log("Eliminacion correcta");
-      console.log(data)
-      alert("Empleado eliminado correctamente");
-    },(error:any)=>{
-      console.log(error);
-      alert("Ocurrio un error al eliminar el empleado");
-    });
-    this.router.navigate(['inicio']);
+    
+    swal({
+      title: "¿Desea eliminar el empleado?",
+      text: "Esta acción no se puede revertir.",
+      icon: "warning",
+      dangerMode: true,
+      
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        
+        this.empleadoServicio.EliminarEmpleado(id).subscribe((data:any)=>{
+          swal("El empleado fue eliminado correctamente", {
+            icon: "success",
+          });
+        },(error:any)=>{
+          swal("Ocurrió un error al intentar eliminar el empleado", {
+            icon: "error",
+          });
+        });
+        this.router.navigate(['inicio']);
+      }
+    }); 
   }
-
-
 }

@@ -21,6 +21,7 @@ export class DetallesEmpresaComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
     this.id = this._route.snapshot.paramMap.get('id');
     this.servicio.ObtenerEmpresaPorID(this.id).subscribe(
 
@@ -39,5 +40,4 @@ export class DetallesEmpresaComponent implements OnInit {
       }
     );
   }
-
 }

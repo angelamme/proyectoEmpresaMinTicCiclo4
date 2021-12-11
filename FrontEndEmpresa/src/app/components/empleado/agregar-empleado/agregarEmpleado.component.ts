@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModelEmpleado } from 'src/app/Modelos/empleado.model';
 import { EmpleadoService } from 'src/app/servicios/empleado.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
+
 @Component({
   selector: 'app-agregar-empleado',
   templateUrl: './agregarEmpleado.component.html',
@@ -47,10 +49,14 @@ export class AgregarEmpleadoComponent implements OnInit {
     empleado.empresaId = "61a5745724a6402a80cbf33e";
     empleado.clave = "";
     this.ServicioEmpleado.CrearEmpleado(empleado).subscribe((datos:ModelEmpleado)=>{
-      alert("Empleado almacenado correctamente");
+      swal("Empleado almacenado correctamente", {
+        icon: "success",
+      });
       this.router.navigate(["/listar-empleado"]);
     }, (error:any)=>{
-      alert("Ocurrio un error al almacenar el empleado");
+      swal("Ocurrió un error al almacenar el empleado", {
+        icon: "error",
+      });
       console.log(error);
     });
   }

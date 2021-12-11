@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresaService } from 'src/app/servicios/empresa.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-editar-empresa',
@@ -60,14 +61,24 @@ export class EditarEmpresaComponent implements OnInit {
       data => {
         this.empresas = data;
         console.log(data);
-        alert("Empresa modificada")
-        router.navigate(['/listar-empresa']);
+        swal("Empresa actualizada correctamente", {
+          icon: "success",
+        });
+        //router.navigate(['/listar-empresa']);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
-          alert("Error en el cliente: " + err.message)
+          swal({
+            title: 'Error en el cliente',
+            text: err.message,
+            icon: "error",
+          });
         } else {
-          alert("Error en el servidor: " + err.message)
+          swal({
+            title: 'Error en el servidor',
+            text: err.message,
+            icon: "error",
+          });
         }
       }
     );

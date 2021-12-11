@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModelEmpleado } from 'src/app/Modelos/empleado.model';
 import { EmpleadoService } from 'src/app/servicios/empleado.service';
+import swal from 'sweetalert';
+
 @Component({
   selector: 'app-editar-empleado',
   templateUrl: './editar-empleado.component.html',
@@ -70,10 +72,14 @@ export class EditarEmpleadoComponent implements OnInit {
     empleado.empresaId = "61a5745724a6402a80cbf33e";
     empleado.id=this.id;
     this.ServicioEmpleado.ActualizarEmpleado(empleado).subscribe((datos:ModelEmpleado)=>{
-      alert("Empleado actualizado correctamente");
+      swal("Empleado actualizado correctamente", {
+        icon: "success",
+      });
       this.router.navigate(["/listar-empleado"]);
     }, (error:any)=>{
-      alert("Ocurrio un error al actualizar el empleado");
+      swal("Ocurrió un error al actualizar el empleado", {
+        icon: "error",
+      });
       console.log(error);
     });
   }

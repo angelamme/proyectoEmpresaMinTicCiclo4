@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { ModelCliente } from 'src/app/Modelos/cliente.model';
 import { ClienteService } from 'src/app/servicios/cliente.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-listar-cliente',
@@ -27,12 +28,33 @@ export class ListarClienteComponent implements OnInit {
   }
 
   EliminarCliente(id: string){
-    this.clienteServicio.EliminarCliente(id).subscribe((data:any)=>{
-      alert("El Cliente fue eliminado correctamente");
-    },(error:any)=>{
-      console.log(error);
-      alert("Error al eliminar el cliente");
+
+    
+    swal({
+      title: "¿Desea eliminar el cliente?",
+      text: "Esta acción no se puede revertir.",
+      icon: "warning",
+      dangerMode: true,
+      
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.clienteServicio.EliminarCliente(id).subscribe((data:any)=>{
+          //alert("El Cliente fue eliminado correctamente");
+          swal("El cliente fue eliminado correctamente", {
+            icon: "success",
+          });
+        },(error:any)=>{
+          console.log(error);
+          //alert("Error al eliminar el cliente");
+          swal("Error al eliminar el cliente", {
+            icon: "error",
+          });
+        });
+      }
     });
+
+    
     // this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: false }).then(() => {
     //   this.router.navigate(['/listar-cliente']);
     // });

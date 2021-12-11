@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModelCliente } from 'src/app/Modelos/cliente.model';
 import { ClienteService } from 'src/app/servicios/cliente.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-editar-cliente',
@@ -83,10 +84,14 @@ export class EditarClienteComponent implements OnInit {
     c.id = this.id;
 
     this.servicioCliente.ActualizarCliente(c).subscribe((datos: ModelCliente) => {
-      alert("Cliente Actualizado Correctamente");
+      swal("Cliente actualizado correctamente", {
+        icon: "success",
+      });
       this.router.navigate(["/listar-cliente"]);
     }, (error:any) => {
-      alert("Error Actulizando cliente");
+      swal("Error actualizando cliente", {
+        icon: "error",
+      });
       console.log(error)
     });
 
