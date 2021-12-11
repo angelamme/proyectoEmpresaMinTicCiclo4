@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModelProducto } from 'src/app/Modelos/producto.model';
 import { ProductoService } from 'src/app/servicios/producto.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-editar-producto',
@@ -38,10 +39,14 @@ export class EditarProductoComponent implements OnInit {
     producto.empresaId = "61a5745724a6402a80cbf33e";
     producto.id=this.id;
     this.ServicioProducto.ActualizarProducto(producto).subscribe((datos:ModelProducto)=>{
-      alert("Producto actualizado correctamente");
+      swal("Producto actualizado correctamente", {
+        icon: "success",
+      });
       this.router.navigate(["/listar-producto"]);
     }, (error:any)=>{
-      alert("Ocurrio un error al actualizar el producto");
+      swal("Ocurrió un error al intentar actualizar el producto", {
+        icon: "error",
+      });
       console.log(error);
     });
   }

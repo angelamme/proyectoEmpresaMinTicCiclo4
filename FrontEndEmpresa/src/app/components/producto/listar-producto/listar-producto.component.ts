@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModelProducto } from 'src/app/Modelos/producto.model';
 import { ProductoService } from 'src/app/servicios/producto.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-listar-producto',
@@ -25,17 +26,28 @@ export class ListarProductoComponent implements OnInit {
   }
 
   EliminarProducto(id: string){
-    console.log("se va a eliminar");
-    console.log(id);
-    this.productoServicio.EliminarProducto(id).subscribe((data:any)=>{
-      console.log("Eliminacion correcta");
-      console.log(data)
-      alert("Producto eliminado correctamente");
-    },(error:any)=>{
-      console.log(error);
-      alert("Ocurrio un error al eliminar el producto");
+    
+    swal({
+      title: "¿Desea eliminar el producto?",
+      text: "Esta acción no se puede revertir.",
+      icon: "warning",
+      dangerMode: true,
+      
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.productoServicio.EliminarProducto(id).subscribe((data:any)=>{
+          swal("Producto eliminado correctamente", {
+            icon: "success",
+          });
+        },(error:any)=>{
+          console.log(error);
+          swal("Ocurrió un error al intentar eliminar el producto", {
+            icon: "error",
+          });
+        });
+      }
     });
     this.router.navigate(['inicio']);
   }
-
 }
