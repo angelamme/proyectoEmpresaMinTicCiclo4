@@ -62,4 +62,12 @@ export class SeguridadService {
   RefrescarDatosSesion(datos:CredencialesModel){
     this.datosUsuarioSesion.next(datos);
   }
+  ObtenerToken(){
+    let stringDatos = localStorage.getItem("datosSesion");
+    if(stringDatos){
+      let datos = JSON.parse(stringDatos);
+      return datos.tk;
+    }
+    return "";
+  }
 }
