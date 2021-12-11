@@ -9,41 +9,46 @@
                     <div class="row">
                         <div class="col">
                             <label for="nombres">Mis nombres</label>
-                            <input [disabled]="!editar" name="nombres" type="text" formControlName="nombres" class="form-control">
+                            <input name="nombres" type="text" formControlName="nombres" class="form-control">
                         </div>
                         <div class="col">
                             <label for="apellidos">Mis apellidos</label>
-                            <input [disabled]="!editar" name="apellidos" type="text" formControlName="apellidos" class="form-control">
+                            <input name="apellidos" type="text" formControlName="apellidos" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="direccion">Mi dirección</label>
-                            <input [disabled]="!editar" name="direccion" type="text" formControlName="direccion" class="form-control">
+                            <input name="direccion" type="text" formControlName="direccion" class="form-control">
                         </div>
                         <div class="col">
                             <label for="correo">Mi correo electronico</label>
-                            <input [disabled]="!editar" name="correo" type="text" formControlName="correo" class="form-control">
+                            <input name="correo" type="text" formControlName="correo" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="fechaNacimiento">Mi fecha de nacimiento</label>
-                            <input [disabled]="!editar" name="fechaNacimiento" type="datetime-local" formControlName="fechaNacimiento"
+                            <input name="fechaNacimiento" type="datetime-local" formControlName="fechaNacimiento"
                                 class="form-control" max="System.DateTime.Now">
                         </div>
                         <div class="col">
                             <label for="telefono">Mi telefono</label>
-                            <input [disabled]="!editar" name="telefono" type="text" formControlName="telefono" class="form-control">
+                            <input name="telefono" type="text" formControlName="telefono" class="form-control">
                         </div>
                         
                     </div>
                     <div class="row">
                         <div class="col">
                             <label for="sueldo">Mi sueldo</label>
-                            <input [disabled]="!editar" name="sueldo" type="text" formControlName="sueldo" class="form-control">
+                            <input name="sueldo" type="number" formControlName="sueldo" class="form-control">
                         </div>
-                        <div class="col"><h5>Tipo de empleado:</h5></div>
+                        <div class="col">
+                            <div class="col">
+                                <label for="esDir">Empleado directivo</label>
+                                <input name="esDir" type="checkbox" formControlName="esDir" class="form-control">
+                            </div>
+                        </div>
                     </div>
                     <div class="row"><br></div>
                     <div class="row">
@@ -53,7 +58,7 @@
                             </div>
                             <div class="row text-center" *ngIf="editar">
                                 <div class="col">
-                                    <button type="submit" (click)="GuardarCambios()" class="btn btn-success">Guardar Cambios</button>
+                                    <button [disabled]="!fgValidador.valid" type="submit" (click)="GuardarCambios()" class="btn btn-success">Guardar Cambios</button>
                                 </div>
                                 <div class="col">
                                     <button type="submit" (click)="CancelarEditar()" class="btn btn-danger">Cancelar</button>
@@ -66,8 +71,23 @@
         </div>
         <div class="col">
             <div class="row border cuadro-perfil">
-                <!--mis mensajes-->
-                <app-mensajes-usuario></app-mensajes-usuario>
+                <!--cambiar contraseña y mis mensajes-->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="inicio-tab" data-bs-toggle="tab" data-bs-target="#cambiar-clave" type="button" role="tab" aria-controls="inicio" aria-selected="true">Cambiar contraseña</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="reg-tab" data-bs-toggle="tab" data-bs-target="#msg" type="button" role="tab" aria-controls="reg" aria-selected="false">Mis mensajes</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="cambiar-clave" role="tabpanel" aria-labelledby="inicio-tab">
+                        <app-cambiar-clave></app-cambiar-clave> 
+                    </div>
+                    <div class="tab-pane fade" id="msg" role="tabpanel" aria-labelledby="reg-tab">
+                        <app-mensajes-usuario></app-mensajes-usuario>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>

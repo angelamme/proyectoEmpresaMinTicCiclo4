@@ -11,6 +11,12 @@ export class ProductosDePedido extends Entity {
   })
   id?: string;
 
+  @property({
+    type: 'number',
+    required: true,
+  })
+  cantidad: number;
+
   @belongsTo(() => Pedido)
   pedidoId: string;
 

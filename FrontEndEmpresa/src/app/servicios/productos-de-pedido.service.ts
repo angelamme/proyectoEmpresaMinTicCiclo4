@@ -15,8 +15,8 @@ export class ProductosDePedidoService {
     this.token = seguridadServicio.ObtenerToken();
   }
 
-  ObtenerProductoDePedido():Observable<ModelProductosDePedido[]>{
-    return this.http.get<ModelProductosDePedido[]>(`${this.url}/productos-de-pedidos`, {
+  ObtenerProductoDePedido(id:string):Observable<ModelProductosDePedido[]>{
+    return this.http.get<ModelProductosDePedido[]>(`${this.url}/productos-de-pedidos?filter[where][productoId]=${id}`, {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })

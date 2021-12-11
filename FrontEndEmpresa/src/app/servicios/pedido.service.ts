@@ -8,11 +8,20 @@ import { SeguridadService } from './seguridad.service';
   providedIn: 'root'
 })
 export class PedidoService {
+  
 
   token:string = "";
   url:string = 'http://localhost:3000';
   constructor(private http:HttpClient, private seguridadServicio: SeguridadService) { 
     this.token = seguridadServicio.ObtenerToken();
+  }
+
+  ObtenerPedidoDeCliente(idCliente: string) {
+    return this.http.get<ModelPedido[]>(`${this.url}/pedidos?filter[where][clienteId]=${idCliente}`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    });
   }
 
   ObtenerPedido():Observable<ModelPedido[]>{

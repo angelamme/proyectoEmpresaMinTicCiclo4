@@ -15,8 +15,8 @@ export class MensajesClienteService {
     this.token = seguridadServicio.ObtenerToken();
   }
 
-  ObtenerMensajesDeCliente():Observable<ModelMensajeCliente[]>{
-    return this.http.get<ModelMensajeCliente[]>(`${this.url}/mensaje-clientes`, {
+  ObtenerMensajesDeCliente(id: string):Observable<ModelMensajeCliente[]>{
+    return this.http.get<ModelMensajeCliente[]>(`${this.url}/mensaje-clientes?filter[where][clienteId]=${id}`, {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })

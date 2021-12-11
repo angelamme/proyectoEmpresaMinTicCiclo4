@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { CredencialesModel } from 'src/app/Modelos/credenciales.model';
+import { SeguridadService } from 'src/app/servicios/seguridad.service';
 
 @Component({
   selector: 'app-menu-cliente',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuClienteComponent implements OnInit {
 
-  constructor() { }
+  subs: Subscription = new Subscription();
+  idCliente?: string;
+  
+  constructor(private servicioSeguridad: SeguridadService) { }
 
   ngOnInit(): void {
+    this.subs = this.servicioSeguridad.ObtenerDatosUsuarioSesion().subscribe((datos:CredencialesModel)=>{
+      console.log(datos);
+      this.idCliente = datos.data?.id;
+    })
   }
-
+  
 }

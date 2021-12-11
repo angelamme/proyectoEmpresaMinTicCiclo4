@@ -33,6 +33,9 @@ import { AgregarProductoComponent } from './components/producto/agregar-producto
 import { DetallesProductoComponent } from './components/producto/detalles-producto/detalles-producto.component';
 import { ListarProductoComponent } from './components/producto/listar-producto/listar-producto.component';
 import { EditarProductoComponent } from './components/producto/editar-producto/editar-producto.component';
+import { AgregarPedidoComponent } from './components/pedido/agregar-pedido/agregar-pedido.component';
+import { ListarPedidosComponent } from './components/pedido/listar-pedidos/listar-pedidos.component';
+import { ListarProductosDePedidoComponent } from './components/pedido/listar-productos-de-pedido/listar-productos-de-pedido.component';
 
 
 
@@ -67,6 +70,9 @@ import { EditarProductoComponent } from './components/producto/editar-producto/e
     DetallesProductoComponent,
     ListarProductoComponent,
     EditarProductoComponent,
+    AgregarPedidoComponent,
+    ListarPedidosComponent,
+    ListarProductosDePedidoComponent,
   ],
   imports: [
     BrowserModule,

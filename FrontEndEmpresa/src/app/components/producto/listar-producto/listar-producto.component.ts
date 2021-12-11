@@ -35,7 +35,7 @@ export class ListarProductoComponent implements OnInit {
       console.log(error);
       alert("Ocurrio un error al eliminar el producto");
     });
-    this.router.navigate(['inicio']);
+    this.router.navigate(['listar-producto']);
   }
 
 }

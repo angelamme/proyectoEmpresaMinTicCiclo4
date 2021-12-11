@@ -18,6 +18,9 @@ import { AgregarProductoComponent } from './components/producto/agregar-producto
 import { DetallesProductoComponent } from './components/producto/detalles-producto/detalles-producto.component';
 import { EditarProductoComponent } from './components/producto/editar-producto/editar-producto.component';
 import { ListarProductoComponent } from './components/producto/listar-producto/listar-producto.component';
+import { ListarProductosDePedidoComponent } from './components/pedido/listar-productos-de-pedido/listar-productos-de-pedido.component';
+import { ListarPedidosComponent } from './components/pedido/listar-pedidos/listar-pedidos.component';
+import { AgregarPedidoComponent } from './components/pedido/agregar-pedido/agregar-pedido.component';
 
 const routes: Routes = [
   { path: "", component: AppComponent, pathMatch: "full" },
@@ -37,7 +40,10 @@ const routes: Routes = [
   { path: "agregar-producto", component: AgregarProductoComponent, pathMatch: "full" },
   { path: "detalles-producto/:id", component: DetallesProductoComponent, pathMatch: "full" },
   { path: "editar-producto/:id", component: EditarProductoComponent, pathMatch: "full" },
-  { path: "listar-producto", component: ListarProductoComponent, pathMatch: "full" }
+  { path: "listar-producto", component: ListarProductoComponent, pathMatch: "full" },
+  { path: "listar-productos-pedido/:id", component: ListarProductosDePedidoComponent, pathMatch: "full" },
+  { path: "listar-pedidos/:id", component: ListarPedidosComponent, pathMatch: "full" },
+  { path: "agregar-pedido", component: AgregarPedidoComponent, pathMatch: "full" }
 ];
 
 @NgModule({
