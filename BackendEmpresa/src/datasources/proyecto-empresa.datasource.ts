@@ -4,8 +4,8 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'proyectoEmpresa',
   connector: 'mongodb',
-  url: 'mongodb+srv://prog_web:ProgWebMintic@clusterprogweb.nkwjt.mongodb.net/proyectoEmpresa?retryWrites=true&w=majority',
-  //url: 'mongodb://prog_web:ProgWebMintic@clusterprogweb-shard-00-00.nkwjt.mongodb.net:27017,clusterprogweb-shard-00-01.nkwjt.mongodb.net:27017,clusterprogweb-shard-00-02.nkwjt.mongodb.net:27017/proyectoEmpresa?ssl=true&replicaSet=atlas-11tj0p-shard-0&authSource=admin&retryWrites=true&w=majority',
+  //url: 'mongodb+srv://prog_web:ProgWebMintic@clusterprogweb.nkwjt.mongodb.net/proyectoEmpresa?retryWrites=true&w=majority',
+  url: 'mongodb://prog_web:ProgWebMintic@clusterprogweb-shard-00-00.nkwjt.mongodb.net:27017,clusterprogweb-shard-00-01.nkwjt.mongodb.net:27017,clusterprogweb-shard-00-02.nkwjt.mongodb.net:27017/proyectoEmpresa?ssl=true&replicaSet=atlas-11tj0p-shard-0&authSource=admin&retryWrites=true&w=majority',
   host: '',
   port: 0,
   user: '',

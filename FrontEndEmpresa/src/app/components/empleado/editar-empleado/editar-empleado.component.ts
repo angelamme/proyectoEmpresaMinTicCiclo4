@@ -24,10 +24,32 @@ export class EditarEmpleadoComponent implements OnInit {
   }
   );
   
+  nombres: string;
+  apellidos: string;
+  telefono: string;
+  direccion: string;
+  email: string;
+  fechaNacimiento: Date;
+  sueldo: number;
+  esDirectivo: boolean;
+  razonSocial: string;
+  empresaId: string;
+
   constructor(private fb: FormBuilder, 
     private ServicioEmpleado: EmpleadoService,
     private router:Router,
-    private parametro: ActivatedRoute) { }
+    private parametro: ActivatedRoute) { 
+      this.nombres = "";
+      this.apellidos = "";
+      this.telefono = "";
+      this.direccion = "";
+      this.email = "";
+      this.fechaNacimiento = new Date();
+      this.sueldo = 0;
+      this.esDirectivo = false;
+      this.razonSocial = "";
+      this.empresaId="";  
+    }
 
   ngOnInit(): void {
     this.id = this.parametro.snapshot.params["id"];
@@ -71,5 +93,4 @@ export class EditarEmpleadoComponent implements OnInit {
       this.EmpleValidador.controls["id"].setValue(this.id);
     });
   }
-}
 }
