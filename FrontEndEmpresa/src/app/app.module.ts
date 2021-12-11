@@ -29,6 +29,10 @@ import { PerfilEmpleadoComponent } from './components/perfiles/perfil-empleado/p
 import { PerfilUsuarioComponent } from './components/perfiles/perfil-usuario/perfil-usuario.component';
 import { CambiarClaveComponent } from './components/autorizacion/cambiar-clave/cambiar-clave.component';
 import { MensajesUsuarioComponent } from './components/perfiles/mensajes-usuario/mensajes-usuario.component';
+import { AgregarProductoComponent } from './components/producto/agregar-producto/agregar-producto.component';
+import { DetallesProductoComponent } from './components/producto/detalles-producto/detalles-producto.component';
+import { ListarProductoComponent } from './components/producto/listar-producto/listar-producto.component';
+import { EditarProductoComponent } from './components/producto/editar-producto/editar-producto.component';
 
 
 
@@ -59,6 +63,10 @@ import { MensajesUsuarioComponent } from './components/perfiles/mensajes-usuario
     PerfilUsuarioComponent,
     CambiarClaveComponent,
     MensajesUsuarioComponent,
+    AgregarProductoComponent,
+    DetallesProductoComponent,
+    ListarProductoComponent,
+    EditarProductoComponent,
   ],
   imports: [
     BrowserModule,

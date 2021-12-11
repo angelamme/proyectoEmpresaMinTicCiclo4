@@ -14,6 +14,10 @@ import { DetallesClienteComponent } from './components/cliente/detalles-cliente/
 import { EditarClienteComponent } from './components/cliente/editar-cliente/editar-cliente.component';
 import { ListarClienteComponent } from './components/cliente/listar-cliente/listar-cliente.component';
 import { PerfilUsuarioComponent } from './components/perfiles/perfil-usuario/perfil-usuario.component';
+import { AgregarProductoComponent } from './components/producto/agregar-producto/agregar-producto.component';
+import { DetallesProductoComponent } from './components/producto/detalles-producto/detalles-producto.component';
+import { EditarProductoComponent } from './components/producto/editar-producto/editar-producto.component';
+import { ListarProductoComponent } from './components/producto/listar-producto/listar-producto.component';
 
 const routes: Routes = [
   { path: "", component: AppComponent, pathMatch: "full" },
@@ -29,7 +33,11 @@ const routes: Routes = [
   { path: "agregar-cliente", component: AgregarClienteComponent, pathMatch: "full" },
   { path: "detalles-cliente", component: DetallesClienteComponent, pathMatch: "full" },
   { path: "editar-cliente", component: EditarClienteComponent, pathMatch: "full" },
-  { path: "listar-cliente", component: ListarClienteComponent, pathMatch: "full" }
+  { path: "listar-cliente", component: ListarClienteComponent, pathMatch: "full" },
+  { path: "agregar-producto", component: AgregarProductoComponent, pathMatch: "full" },
+  { path: "detalles-producto", component: DetallesProductoComponent, pathMatch: "full" },
+  { path: "editar-producto", component: EditarProductoComponent, pathMatch: "full" },
+  { path: "listar-producto", component: ListarProductoComponent, pathMatch: "full" }
 ];
 
 @NgModule({
