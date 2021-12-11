@@ -15,10 +15,13 @@ token: String = '';
     this.token = this.seguridadServicio.ObtenerToken();
   }
   
-
-  ObtenerRegistros():Observable<ModelCliente[]>{
-    return this.http.get<ModelCliente[]>(`${this.url}/clientes`);
-   }
+  ObtenerClientes():Observable<ModelCliente[]>{
+    return this.http.get<ModelCliente[]>(`${this.url}/clientes`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    });
+  }
 
   CrearCliente(cliente: ModelCliente): Observable<ModelCliente>{
     return this.http.post<ModelCliente>(`${this.url}/clientes`,cliente,{
