@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModelEmpresa } from 'src/app/Modelos/empresa.model';
+import { EmpresaService } from 'src/app/servicios/empresa.service';
 
 @Component({
   selector: 'app-agregar-empresa',
@@ -16,7 +18,7 @@ agrEmpValidador: FormGroup = this.fb.group({
   nit: string;
   razonSocial: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public servicio: EmpresaService) {
     this.nit = "";
     this.razonSocial = "";
    }
@@ -25,6 +27,12 @@ agrEmpValidador: FormGroup = this.fb.group({
   }
 
   agregar_empresa(){
-    alert("Método agregar empresa ejecutado!")
+    let empresa: ModelEmpresa;
+    empresa = {
+      nit: this.nit,
+      razonSocial: this.razonSocial
+    }
+    this.servicio.CrearEmpresa(empresa);
+    alert('Empresa agregada')
   }
 }

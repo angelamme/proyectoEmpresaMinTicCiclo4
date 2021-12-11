@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ModelEmpresa } from './Modelos/empresa.model';
-import { SeguridadService } from './servicios/seguridad.service';
+import { ModelEmpresa } from '../Modelos/empresa.model';
+import { SeguridadService } from './seguridad.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,19 +24,27 @@ token: String = '';
     });
   }
 
+  ObtenerEmpresaPorID(id: string):Observable<ModelEmpresa[]>{
+    return this.http.get<ModelEmpresa[]>(`${this.url}/empresas/${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    });
+  }
+
   CrearEmpresa(empresa: ModelEmpresa): Observable<ModelEmpresa>{
     return this.http.post<ModelEmpresa>(`${this.url}/empresas`,empresa,{
       headers: new HttpHeaders({
-        'Autorization':`Bearer ${this.token}`
+        'Authorization':`Bearer ${this.token}`
       })
     })
   }
 
-  ActualizarEmpresa(empresa: ModelEmpresa): Observable<ModelEmpresa>{
-    return this.http.put<ModelEmpresa>(`${this.url}/empresas`,empresa,{
+  ActualizarEmpresa(id: string,empresa: ModelEmpresa): Observable<ModelEmpresa>{
+    return this.http.put<ModelEmpresa>(`${this.url}/empresas/${id}`,empresa,{
       headers: new HttpHeaders({
-        'Autorization':`Bearer ${this.token}`
+        'Authorization':`Bearer ${this.token}`
       })
     })
-  } 
+  }
 }

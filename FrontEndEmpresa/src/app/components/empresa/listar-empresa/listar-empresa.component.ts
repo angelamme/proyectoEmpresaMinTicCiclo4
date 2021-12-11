@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { EmpresaService } from 'src/app/servicios/empresa.service';
 
 @Component({
   selector: 'app-listar-empresa',
@@ -7,14 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarEmpresaComponent implements OnInit {
 
-  listaEmpresas: string[];
+  empresas: any;
 
-  constructor() { 
+  constructor(public servicio: EmpresaService) { 
 
-    this.listaEmpresas = ["Empresa1","Empresa2","Empresa3","Empresa4","Empresa5"];
   }
 
   ngOnInit(): void {
+    this.servicio.ObtenerEmpresas().subscribe(
+      data => {
+        this.empresas = data;
+        console.log(data);
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log("Error en el cliente.");
+        } else {
+          console.log("Error en el servidor.");
+        }
+      }
+    );
   }
 
 }
