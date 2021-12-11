@@ -1,1 +1,74 @@
-<p>perfil-empleado works!</p>
+<div class="border cuadro-perfil">
+    <div class="row">
+        <div class="col">
+            <div class="border cuadro-perfil">
+                <form [formGroup]="fgValidador">
+                    <div class="row">
+                        <h4>Mis Datos</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="nombres">Mis nombres</label>
+                            <input [disabled]="!editar" name="nombres" type="text" formControlName="nombres" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="apellidos">Mis apellidos</label>
+                            <input [disabled]="!editar" name="apellidos" type="text" formControlName="apellidos" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="direccion">Mi dirección</label>
+                            <input [disabled]="!editar" name="direccion" type="text" formControlName="direccion" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="correo">Mi correo electronico</label>
+                            <input [disabled]="!editar" name="correo" type="text" formControlName="correo" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="fechaNacimiento">Mi fecha de nacimiento</label>
+                            <input [disabled]="!editar" name="fechaNacimiento" type="datetime-local" formControlName="fechaNacimiento"
+                                class="form-control" max="System.DateTime.Now">
+                        </div>
+                        <div class="col">
+                            <label for="telefono">Mi telefono</label>
+                            <input [disabled]="!editar" name="telefono" type="text" formControlName="telefono" class="form-control">
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="sueldo">Mi sueldo</label>
+                            <input [disabled]="!editar" name="sueldo" type="text" formControlName="sueldo" class="form-control">
+                        </div>
+                        <div class="col"><h5>Tipo de empleado:</h5></div>
+                    </div>
+                    <div class="row"><br></div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row" *ngIf="!editar">
+                                <button type="submit" (click)="Editar()" class="btn btn-primary table-btn">Editar Datos</button>
+                            </div>
+                            <div class="row text-center" *ngIf="editar">
+                                <div class="col">
+                                    <button type="submit" (click)="GuardarCambios()" class="btn btn-success">Guardar Cambios</button>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" (click)="CancelarEditar()" class="btn btn-danger">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row border cuadro-perfil">
+                <!--mis mensajes-->
+                <app-mensajes-usuario></app-mensajes-usuario>
+            </div>
+        </div>
+    </div>
+</div>
