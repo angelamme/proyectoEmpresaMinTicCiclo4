@@ -23,6 +23,14 @@ export class ProductoService {
     });
   }
 
+  ObtenerProductoPorId(id:string):Observable<ModelProducto>{
+    return this.http.get<ModelProducto>(`${this.url}/productos/${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    });
+  }
+
   CrearProducto(producto:ModelProducto):Observable<ModelProducto>{
     return this.http.post<ModelProducto>(`${this.url}/productos`, producto,{
       headers: new HttpHeaders({
@@ -32,7 +40,7 @@ export class ProductoService {
   }
 
   ActualizarProducto(producto:ModelProducto):Observable<ModelProducto>{
-    return this.http.put<ModelProducto>(`${this.url}/productos`, producto,{
+    return this.http.put<ModelProducto>(`${this.url}/productos/${producto.id}`, producto,{
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.token}`
       })

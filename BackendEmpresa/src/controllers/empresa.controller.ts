@@ -21,7 +21,7 @@ import {
 import {Empresa} from '../models';
 import {EmpresaRepository} from '../repositories';
 
-@authenticate("Empleado")
+//@authenticate("Empleado")
 export class EmpresaController {
   constructor(
     @repository(EmpresaRepository)
