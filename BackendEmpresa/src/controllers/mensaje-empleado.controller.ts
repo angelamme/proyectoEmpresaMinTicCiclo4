@@ -51,12 +51,13 @@ export class MensajeEmpleadoController {
     // Si encuentra el empleado se captura el telefono
     if (empleado) {
       let phone: string = (await empleado).telefono;
-
+      let asunto = `Servicio de Notificacion Por Email Empleado Team D Desarrolladores`;
       console.log("El empleado con id " + mensajeEmpleado.empleadoId + " fue encontrado.")
       console.log("El telefono del empleado " + (await empleado).nombres + " " + (await empleado).apellidos + " es " + phone)
 
       // Se llama al servicio de notificaciones
-      this.notificacionesService.EnviarNotifiacionesPorSMS(mensajeEmpleado.mensaje, phone)
+      this.notificacionesService.EnviarNotifiacionesPorSMS(mensajeEmpleado.mensaje, phone);
+      this.notificacionesService.EnviarNotifiacionesPorCorreo((await empleado).email, asunto, mensajeEmpleado.mensaje);
       return this.mensajeEmpleadoRepository.create(mensajeEmpleado);
     } else {
       console.log("el id " + mensajeEmpleado.empleadoId + " no existe en la base de datos, el mensaje no fue enviado")

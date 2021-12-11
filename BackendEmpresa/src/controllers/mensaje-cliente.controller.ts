@@ -56,8 +56,10 @@ export class MensajeClienteController {
     let c = this.clienteRepository.findById(mensajeCliente.clienteId);
     if(c){
       let telefono:string = (await c).telefono;
-      console.log("telefono del cliente: " + telefono)
-      this.notificacionesService.EnviarNotifiacionesPorSMS(mensajeCliente.mensajecliente, telefono)
+      let asunto = `Servicio de Notificacion Por Email Empleado Team D Desarrolladores`;
+      console.log("telefono del cliente: " + telefono);
+      this.notificacionesService.EnviarNotifiacionesPorSMS(mensajeCliente.mensajecliente, telefono);
+      this.notificacionesService.EnviarNotifiacionesPorCorreo((await c).email, asunto, mensajeCliente.mensajecliente);
       return this.mensajeClienteRepository.create(mensajeCliente);
     }
     return new MensajeCliente;
