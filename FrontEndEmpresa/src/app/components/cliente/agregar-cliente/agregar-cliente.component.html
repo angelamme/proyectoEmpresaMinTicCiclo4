@@ -3,48 +3,46 @@
 </div>
 <br>
 <div class="container border text-center">
-  <form method="post">
+  <form [formGroup]="fgValidador" (ngSubmit)="AgregarCliente()" method="post">
       <div class="form-row row">
           <div class="form-group col-md-4">
               <label for="nombres">Nombres</label>
-              <input name="nombres" type="text" [(ngModel)]="nombres" class="form-control" placeholder="Nombres">
+              <input formControlName="nombres" name="nombres" type="text" [(ngModel)]="nombres" class="form-control" placeholder="Nombres">
           </div>
           <div class="form-group col-md-4">
               <label for="apellidos">Apellidos</label>
-              <input name="apellidos" type="text" [(ngModel)]="apellidos" class="form-control" placeholder="Apellidos">
+              <input formControlName="apellidos" name="apellidos" type="text" [(ngModel)]="apellidos" class="form-control" placeholder="Apellidos">
           </div>
           <div class="form-group col-md-4">
               <label for="telefono">Teléfono</label>
-              <input name="telefono" type="text" [(ngModel)]="telefono" class="form-control" placeholder="Teléfono">
+              <input formControlName="telefono" name="telefono" type="text" [(ngModel)]="telefono" class="form-control" placeholder="Teléfono">
           </div>
       </div>
       <div class="form-row row">
           <div class="form-group col-md-4">
               <label for="direccion">Dirección</label>
-              <input name="direccion" type="text" [(ngModel)]="direccion" class="form-control" placeholder="Dirección">
+              <input formControlName="direccion" name="direccion" type="text" [(ngModel)]="direccion" class="form-control" placeholder="Dirección">
           </div>
           <div class="md-form col-md-4 md-outline input-with-post-icon datepicker">
               <label for="fechaNacimiento">Fecha de nacimiento</label>
-              <input name="fechaNacimiento" type="datetime-local" [(ngModel)]="fechaNacimiento" placeholder="Selecciona la fecha de nacimiento"
+              <input formControlName="fechaNacimiento" name="fechaNacimiento" type="datetime-local" [(ngModel)]="fechaNacimiento" placeholder="Selecciona la fecha de nacimiento"
                   class="form-control" max="System.DateTime.Now">
           </div>
           <div class="form-group col-md-4">
-              <label for="correo">Correo Electrónico</label>
-              <input name="correo" type="email" [(ngModel)]="correo" class="form-control" placeholder="Correo Electronico">
+              <label for="email">Correo Electrónico</label>
+              <input formControlName="email" name="email" type="email" [(ngModel)]="email" class="form-control" placeholder="Correo Electronico">
           </div>
       </div>
       <div class="form-row row">
           <div class="form-group col-md-4">
               <label for="razonSocial">Empresa donde realiza la compra</label>
-              <select name="razonSocial" type="text" [(ngModel)]="razonSocial" class="form-control">
-                  <option *ngFor="let item of listaEmpresas">{{item}}</option>
-              </select>
+              <input formArrayName="empresaId" name="empresaId" type="text" [(ngModel)]="empresaId" class="form-control" placeholder="Empresa">
           </div>
       </div>
       <br>
       <div>
           <button type="submit" (click)="Volver()" class="btn btn-primary table-btn">Volver</button>
-          <button type="submit" (click)="Agregar()" class="btn btn-success">Agregar</button>
+          <button type="submit" class="btn btn-success">Agregar</button>
       </div>
   </form>
 </div>

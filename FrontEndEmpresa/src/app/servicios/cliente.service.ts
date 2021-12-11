@@ -22,7 +22,14 @@ token: String = '';
       })
     });
   }
-
+  
+  ObtenerClientePorId(id: string):Observable<ModelCliente>{
+    return this.http.get<ModelCliente>(`${this.url}/clientes/${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    });
+  }
   CrearCliente(cliente: ModelCliente): Observable<ModelCliente>{
     return this.http.post<ModelCliente>(`${this.url}/clientes`,cliente,{
       headers: new HttpHeaders({
@@ -32,7 +39,7 @@ token: String = '';
   }
 
   ActualizarCliente(cliente: ModelCliente): Observable<ModelCliente>{
-    return this.http.put<ModelCliente>(`${this.url}/clientes`,cliente,{
+    return this.http.put<ModelCliente>(`${this.url}/clientes/${cliente.id}`,cliente,{
       headers: new HttpHeaders({
         'Autorization':`Bearer ${this.token}`
       })
