@@ -8,6 +8,7 @@ export class ModelEmpleado{
   fechaNacimiento?:string;
   sueldo?:number;
   esDirectivo?:boolean;
+  razonSocial?: string;
   clave?:string;
   empresaId?: string;
 }

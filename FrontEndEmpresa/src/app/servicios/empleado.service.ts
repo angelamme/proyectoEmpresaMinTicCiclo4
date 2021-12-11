@@ -45,4 +45,12 @@ export class EmpleadoService {
       })
     });
   }
+  
+  ObtenerEmpleadoPorId(id:string):Observable<ModelEmpleado>{
+    return this.http.get<ModelEmpleado>(`${this.url}/empleados/${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      })
+    });
+  }
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModelEmpleado } from 'src/app/Modelos/empleado.model';
+import { EmpleadoService } from 'src/app/servicios/empleado.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-agregar-empleado',
   templateUrl: './agregarEmpleado.component.html',
@@ -7,36 +10,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarEmpleadoComponent implements OnInit {
 
-  nombres: string;
-  apellidos: string;
-  telefono: string;
-  direccion: string;
-  correo: string;
-  fechaNacimiento: Date;
-  sueldo: number;
-  esDirectivo: boolean;
-  razonSocial: string;
+  EmpleValidador: FormGroup = this.fb.group({
+    'nombres':['',[Validators.required]],
+    'apellidos':['',[Validators.required]],
+    'telefono':['',[Validators.required]],
+    'direccion':['',[Validators.required]],
+    'email':['',[Validators.required]],
+    'fechaNacimiento':['',[Validators.required]],
+    'sueldo':['',[Validators.required]],
+    'esDirectivo':['',[Validators.required]],
+    'razonSocial':[Validators.required]
+  });
+
+
   listaEmpresas: string[] = ["prueba 1", "prueba 2", "prueba 3"];
-  constructor() { 
-    this.nombres="";
-    this.apellidos="";
-    this.telefono="";
-    this.direccion="";
-    this.correo="";
-    this.fechaNacimiento=new Date();
-    this.sueldo=0;
-    this.esDirectivo=false;
-    this.razonSocial="";
-  }
+
+  constructor(private fb: FormBuilder, 
+    private ServicioEmpleado: EmpleadoService,
+    private router:Router) { }
+
 
   ngOnInit(): void {
   }
 
   Agregar(){
-    console.log("Agregar empleado");
-  }
-  Volver(){
-    console.log("Volver de Agregar empleado");
+    let empleado = new ModelEmpleado();
+    empleado.nombres = this.EmpleValidador.controls["nombres"].value;
+    empleado.apellidos = this.EmpleValidador.controls["apellidos"].value;
+    empleado.telefono = this.EmpleValidador.controls["telefono"].value;
+    empleado.direccion = this.EmpleValidador.controls["direccion"].value;
+    empleado.email = this.EmpleValidador.controls["email"].value;
+    empleado.fechaNacimiento = this.EmpleValidador.controls["fechaNacimiento"].value;
+    empleado.sueldo = parseInt(this.EmpleValidador.controls["sueldo"].value);
+    empleado.esDirectivo = Boolean(this.EmpleValidador.controls["esDirectivo"].value);
+    empleado.razonSocial = this.EmpleValidador.controls["razonSocial"].value;
+    empleado.empresaId = "61a5745724a6402a80cbf33e";
+    this.ServicioEmpleado.CrearEmpleado(empleado).subscribe((datos:ModelEmpleado)=>{
+      alert("Empleado almacenado correctamente");
+      this.router.navigate(["/listar-empleado"]);
+    }, (error:any)=>{
+      alert("Ocurrio un error al almacenar el empleado");
+      console.log(error);
+    });
   }
 
 }
